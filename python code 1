@@ -1,0 +1,65 @@
+class bank:
+  def __init__(self,name,total):
+    self.name = name
+    self.total = total
+  
+  def check_money(self):
+    print(f'\n{self.name}, You have ${self.total} in your account')
+
+  def deposit_money(self,money):
+    self.money = money
+    self.total = self.total + money
+    print("Done!") 
+
+  def spend_money(self,money):
+    self.money = money
+    if self.total < money:
+      print("\nYou have low funds and you will not be able to make this purchase")
+    else:
+      self.total = self.total - money
+      print("Transaction complete")
+
+savings_account = bank("Savings account", 50)
+checking_account = bank("Checking account", 300)
+
+while True:
+  print("\n1) Print available money on you accounts")
+  print("\n2) Deposit money")
+  print("\n3) Withdraw money")
+  print("\n4) Exit")
+
+  user_input = input("\nWhat would you like to do?: ")
+  user_input = int(user_input)
+
+  if user_input == 1:
+    savings_account.check_money()
+    checking_account.check_money()
+  elif user_input == 2:
+    print("\n1} Savings account: ")
+    print("\n2) Checking account: ")
+    user_input2 = input("\nWhich bank account would you like to pick?: ")
+    user_input2 = int(user_input2)
+    user_input3 = input("\nWhat is the amount of money you would like to deposit into your account?:")
+    user_input3 = int(user_input3)
+    if user_input2 == 1:
+      savings_account.deposit_money(user_input3)
+    elif user_input2 == 2:
+      checking_account.deposit_money(user_input3)
+    else:
+      print("please pick a valid account")
+  elif user_input == 3:
+    print("\n1} Savings account: ")
+    print("\n2) Checking account: ")
+    user_input4 = input("\nWhich account would you like to withdraw from?: ")
+    user_input4 = int(user_input4)
+    user_input5 = input("\nHow much would you like to withdraw from your account?: ")
+    user_input5 = int(user_input5)
+    if user_input4 == 1:
+      savings_account.spend_money(user_input5)
+    elif user_input4 == 2:
+      checking_account.spend_money(user_input5)
+    else:
+      print("please pick a valid account")
+  else:
+    print("Thank you! Have a good day")
+    break
